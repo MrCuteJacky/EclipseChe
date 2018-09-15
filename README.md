@@ -1,2 +1,2 @@
-# EclipseChe
-About eclipse Che workspace.
+# mcj-fibonacci
+About fibonacci.
