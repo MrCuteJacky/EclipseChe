@@ -3,7 +3,7 @@ package org.mcj.fibonacci;
 import java.text.MessageFormat;
 
 /**
- * Sample.
+ * Sample1.
  * 
  * 1, 1, 2, 3, 5, ..., 34, 55, 89, 144, ...
  * 
