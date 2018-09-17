@@ -25,15 +25,24 @@ public class Sample1 {
 	 * @throws Exception 
 	 */
 	public static void main(String[] args) throws Exception {
-		
-		int n = 1;
-		double during = 0;
-		while (during < 60) {
-			long bTime = System.currentTimeMillis();
-			long result = f(n++);
-			long eTime = System.currentTimeMillis();
-			during = (eTime - bTime) / 1000.0;
-			System.out.println(MessageFormat.format("f({0}) = {1}, spend {2} seconds.", n - 1, result, during));
+
+		for (int i = 1; i <= 50; i++) {
+			
+			final int n = i;
+			
+			new HandleTime<Long>() {
+
+				@Override
+				protected Long execute() throws Exception {
+					return f(n);
+				}
+
+				@Override
+				protected void callback(Long result, String time) {
+					System.out.println(MessageFormat.format("f({0}) = {1}, spend {2}", n, result, time));
+				}
+				
+			}.run();
 		}
 	}
 	

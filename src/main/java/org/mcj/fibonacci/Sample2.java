@@ -27,14 +27,23 @@ public class Sample2 {
 	 */
 	public static void main(String[] args) throws Exception {
 		
-		int n = 1;
-		double during = 0;
-		while (during < 10 && n < 30) {
-			long bTime = System.currentTimeMillis();
-			String result = f(n++);
-			long eTime = System.currentTimeMillis();
-			during = (eTime - bTime) / 1000.0;
-			System.out.println(MessageFormat.format("fibonacci({0}) = {1}, spend {2} seconds.", n - 1, result, during));
+		for (int i = 1; i <= 50; i++) {
+			
+			final int n = i;
+			
+			new HandleTime<String>() {
+
+				@Override
+				protected String execute() throws Exception {
+					return f(n);
+				}
+
+				@Override
+				protected void callback(String result, String time) {
+					System.out.println(MessageFormat.format("f({0}) = {1}, spend {2}", n, result, time));
+				}
+				
+			}.run();
 		}
 	}
 	
